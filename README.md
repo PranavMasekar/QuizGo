@@ -1,16 +1,47 @@
-# quiz_go
+## How to Use 
 
-A new Flutter project.
+**Step 1:**
 
-## Getting Started
+Download or clone this repo by using the link below:
 
-This project is a starting point for a Flutter application.
+```
+https://github.com/PranavMasekar/QuizGo.git
+```
 
-A few resources to get you started if this is your first Flutter project:
+**Step 2:**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Go to project root and execute the following command in console to get the required dependencies: 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+flutter pub get 
+```
+
+### Libraries & Tools Used
+
+* [Dio](https://github.com/flutterchina/dio)
+
+### Folder Structure
+Here is the core folder structure which flutter provides.
+
+```
+flutter-app/
+|- android
+|- build
+|- ios
+|- lib
+|- test
+```
+
+Here is the folder structure we have been using in this project
+
+```
+lib/
+|- constants/
+|- data/
+|- stores/
+|- ui/
+|- utils/
+|- widgets/
+|- main.dart
+|- routes.dart
+```
