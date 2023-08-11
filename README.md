@@ -27,6 +27,7 @@ flutter pub get
 * [Equatable](https://pub.dev/packages/equatable)
 * [Flutter ScreenUtil](https://pub.dev/packages/flutter_screenutil)
 * [intl](https://pub.dev/packages/intl)
+* [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
