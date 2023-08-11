@@ -21,6 +21,10 @@ flutter pub get
 * [Dio](https://pub.dev/packages/dio)
 * [Firebase Core](https://pub.dev/packages/firebase_core)
 * [Firebase Auth](https://pub.dev/packages/firebase_auth)
+* [Flutter Bloc](https://pub.dev/packages/flutter_bloc)
+* [Get It](https://pub.dev/packages/get_it)
+* [Equatable](https://pub.dev/packages/equatable)
+* [Go Router](https://pub.dev/packages/go_router)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
@@ -38,12 +42,15 @@ Here is the folder structure we have been using in this project
 
 ```
 lib/
+|- blocs/
+|- common/
 |- constants/
-|- data/
-|- stores/
-|- ui/
-|- utils/
-|- widgets/
+|- extensions/
+|- helpers/
+|- models/
+|- presentation/
+|- repositories/
+|- router/
+|- services/
 |- main.dart
-|- routes.dart
 ```
