@@ -18,13 +18,15 @@ flutter pub get
 
 ### Libraries & Tools Used
 
-* [Dio](https://pub.dev/packages/dio)
+* [Flutter Bloc](https://pub.dev/packages/flutter_bloc)
 * [Firebase Core](https://pub.dev/packages/firebase_core)
 * [Firebase Auth](https://pub.dev/packages/firebase_auth)
-* [Flutter Bloc](https://pub.dev/packages/flutter_bloc)
+* [Go Router](https://pub.dev/packages/go_router)
+* [Dio](https://pub.dev/packages/dio)
 * [Get It](https://pub.dev/packages/get_it)
 * [Equatable](https://pub.dev/packages/equatable)
-* [Go Router](https://pub.dev/packages/go_router)
+* [Flutter ScreenUtil](https://pub.dev/packages/flutter_screenutil)
+* [intl](https://pub.dev/packages/intl)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
