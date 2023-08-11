@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz_go/common/widgets/background.dart';
 
 import 'constants/export_constants.dart';
 import 'firebase_options.dart';
@@ -31,6 +32,16 @@ class MyApp extends StatelessWidget {
             title: 'QuizGo',
             debugShowCheckedModeBanner: false,
             theme: darkTheme(),
+            home: Scaffold(
+              body: BackGround(
+                child: Center(
+                  child: Text(
+                    "Pranav Masekar",
+                    style: MyTextStyles.largeTextStyle.copyWith(fontSize: 28),
+                  ),
+                ),
+              ),
+            ),
           ),
         );
       },
