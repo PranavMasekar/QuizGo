@@ -18,7 +18,9 @@ flutter pub get
 
 ### Libraries & Tools Used
 
-* [Dio](https://github.com/flutterchina/dio)
+* [Dio](https://pub.dev/packages/dio)
+* [Firebase Core](https://pub.dev/packages/firebase_core)
+* [Firebase Auth](https://pub.dev/packages/firebase_auth)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
