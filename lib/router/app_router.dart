@@ -1,15 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_go/common/export_common.dart';
+import 'package:quiz_go/presentation/export_presentation.dart';
 
 class AppRouter {
   GoRouter router = GoRouter(
-    initialLocation: "/",
+    initialLocation: "/login",
     routes: [
       GoRoute(
-        path: '/',
+        path: '/login',
         builder: (context, state) {
-          return BackGround(child: Container());
+          return const LoginScreen();
+        },
+      ),
+      GoRoute(
+        path: '/signup',
+        builder: (context, state) {
+          return const SignUpScreen();
         },
       ),
     ],
