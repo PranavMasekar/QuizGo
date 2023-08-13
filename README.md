@@ -21,6 +21,7 @@ flutter pub get
 * [Flutter Bloc](https://pub.dev/packages/flutter_bloc)
 * [Firebase Core](https://pub.dev/packages/firebase_core)
 * [Firebase Auth](https://pub.dev/packages/firebase_auth)
+* [Firestore](https://pub.dev/packages/cloud_firestore)
 * [Go Router](https://pub.dev/packages/go_router)
 * [Dio](https://pub.dev/packages/dio)
 * [Get It](https://pub.dev/packages/get_it)
@@ -29,6 +30,7 @@ flutter pub get
 * [intl](https://pub.dev/packages/intl)
 * [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons)
 * [Flutter Svg](https://pub.dev/packages/flutter_svg)
+* [Fpdart](https://pub.dev/packages/fpdart)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
