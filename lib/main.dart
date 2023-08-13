@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz_go/blocs/auth_bloc/auth_bloc.dart';
 import 'package:quiz_go/router/export_router.dart';
 
 import 'constants/export_constants.dart';
@@ -23,13 +25,10 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(360, 840),
       builder: (context, child) {
-        return GestureDetector(
-          onTap: () {
-            FocusScopeNode currentFocus = FocusScope.of(context);
-            if (!currentFocus.hasPrimaryFocus) {
-              currentFocus.unfocus();
-            }
-          },
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => locator.get<AuthBloc>()),
+          ],
           child: MaterialApp.router(
             title: 'QuizGo',
             debugShowCheckedModeBanner: false,
