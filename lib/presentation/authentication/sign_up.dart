@@ -65,19 +65,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 SizedBox(height: 15.h),
-                MyTextField(
-                  controller: passwordController,
-                  hintText: "Password",
-                  inputType: TextInputType.visiblePassword,
-                  prefixIcon: const Icon(
-                    Icons.lock_outline_rounded,
-                    color: AppColors.textColor,
-                  ),
-                  isObsecure: true,
-                  suffixIcon: const Icon(
-                    Icons.visibility_off_outlined,
-                    color: AppColors.textColor,
-                  ),
+                BlocBuilder<PasswordCubit, PasswordState>(
+                  builder: (context, passwordState) {
+                    return MyTextField(
+                      controller: passwordController,
+                      hintText: "Password",
+                      inputType: TextInputType.visiblePassword,
+                      prefixIcon: const Icon(
+                        Icons.lock_outline_rounded,
+                        color: AppColors.textColor,
+                      ),
+                      isObsecure: passwordState.showPassword,
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          context.read<PasswordCubit>().changeState();
+                        },
+                        child: Icon(
+                          passwordState.showPassword
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: AppColors.textColor,
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 45.h),
                 BlocConsumer<AuthBloc, AuthState>(

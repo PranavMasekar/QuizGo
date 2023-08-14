@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quiz_go/blocs/auth_bloc/auth_bloc.dart';
+import 'package:quiz_go/blocs/export_bloc.dart';
 import 'package:quiz_go/router/export_router.dart';
 
 import 'constants/export_constants.dart';
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) => locator.get<AuthBloc>()),
+            BlocProvider(create: (context) => locator.get<PasswordCubit>()),
           ],
           child: MaterialApp.router(
             title: 'QuizGo',

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_go/blocs/export_bloc.dart';
+import 'package:quiz_go/blocs/password%20cubit/password_cubit.dart';
 import 'package:quiz_go/common/export_common.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/extensions/export_extension.dart';
@@ -54,19 +55,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(height: 15.h),
-                MyTextField(
-                  controller: passwordController,
-                  hintText: "Password",
-                  inputType: TextInputType.visiblePassword,
-                  prefixIcon: const Icon(
-                    Icons.lock_outline_rounded,
-                    color: AppColors.textColor,
-                  ),
-                  isObsecure: true,
-                  suffixIcon: const Icon(
-                    Icons.visibility_off_outlined,
-                    color: AppColors.textColor,
-                  ),
+                BlocBuilder<PasswordCubit, PasswordState>(
+                  builder: (context, passwordState) {
+                    return MyTextField(
+                      controller: passwordController,
+                      hintText: "Password",
+                      inputType: TextInputType.visiblePassword,
+                      prefixIcon: const Icon(
+                        Icons.lock_outline_rounded,
+                        color: AppColors.textColor,
+                      ),
+                      isObsecure: passwordState.showPassword,
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          context.read<PasswordCubit>().changeState();
+                        },
+                        child: Icon(
+                          passwordState.showPassword
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: AppColors.textColor,
+                        ),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 45.h),
                 BlocConsumer<AuthBloc, AuthState>(
