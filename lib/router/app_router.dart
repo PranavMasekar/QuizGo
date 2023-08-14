@@ -17,6 +17,12 @@ class AppRouter {
           return const SignUpScreen();
         },
       ),
+      GoRoute(
+        path: '/home',
+        builder: (context, state) {
+          return const HomePage();
+        },
+      ),
     ],
   );
 }

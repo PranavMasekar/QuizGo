@@ -4,8 +4,8 @@ enum AuthStatus {
   initial,
   loading,
   error,
-  authenticated,
-  unAuthenticated,
+  login,
+  signup,
 }
 
 class AuthState extends Equatable {

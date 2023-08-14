@@ -84,23 +84,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   listener: (context, state) {
                     if (state.status == AuthStatus.error) {
                       log("Error : ${state.errorMessage}");
+                      showSnackBar(
+                        context,
+                        state.errorMessage,
+                        isError: true,
+                      );
                     }
-                    if (state.status == AuthStatus.authenticated) {
-                      // Navigate to homepage
-                      log("Authenticated");
+                    if (state.status == AuthStatus.signup) {
+                      context.go("/home");
                     }
                   },
                   builder: (context, state) {
                     return CustomButton(
                       title: "SignUp",
                       onTap: () {
-                        context.read<AuthBloc>().add(
-                              SignUpEvent(
-                                email: emailController.text,
-                                password: passwordController.text,
-                                userName: userNameController.text,
-                              ),
-                            );
+                        if (!emailController.text.contains("@")) {
+                          showSnackBar(context, "Invalid Email", isError: true);
+                        } else if (passwordController.text.length < 6) {
+                          showSnackBar(
+                            context,
+                            "Password should be atleast 6 characters",
+                            isError: true,
+                          );
+                        } else if (userNameController.text == "") {
+                          showSnackBar(
+                            context,
+                            "Invalid Username",
+                            isError: true,
+                          );
+                        } else {
+                          context.read<AuthBloc>().add(
+                                SignUpEvent(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                  userName: userNameController.text,
+                                ),
+                              );
+                        }
                       },
                       isLoading: state.status == AuthStatus.loading,
                     );

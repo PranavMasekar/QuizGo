@@ -11,6 +11,7 @@ class AppColors {
   static const Color greyColor = Color(0xFF555154);
   static const Color redColor = Color(0xFFff3333);
   static const Color darkPurple = Color(0xFF080809);
+  static const Color greenColor = Color(0xFF50C878);
 
   static RadialGradient purpleGradient = const RadialGradient(
     colors: [Color(0xFF131238), primaryColor],

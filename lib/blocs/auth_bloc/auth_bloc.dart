@@ -32,7 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final res = await _service.saveToFirestore(userModel.toMap());
       res.fold(
         (error) => throw error.message,
-        (success) => emit(state.copyWith(status: AuthStatus.authenticated)),
+        (success) => emit(state.copyWith(status: AuthStatus.signup)),
       );
     } catch (e) {
       emit(
@@ -47,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final signUpResponse = await _service.login(event.email, event.password);
       signUpResponse.fold(
         (error) => throw error.message,
-        (userId) => emit(state.copyWith(status: AuthStatus.authenticated)),
+        (userId) => emit(state.copyWith(status: AuthStatus.login)),
       );
     } catch (e) {
       emit(
@@ -62,7 +62,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final response = await _service.signOut();
       response.fold(
         (error) => throw error.message,
-        (r) => emit(state.copyWith(status: AuthStatus.unAuthenticated)),
+        (r) => emit(state.copyWith(status: AuthStatus.initial)),
       );
     } catch (e) {
       emit(

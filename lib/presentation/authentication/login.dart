@@ -73,22 +73,36 @@ class _LoginScreenState extends State<LoginScreen> {
                   listener: (context, state) {
                     if (state.status == AuthStatus.error) {
                       log("Error : ${state.errorMessage}");
+                      showSnackBar(
+                        context,
+                        state.errorMessage,
+                        isError: true,
+                      );
                     }
-                    if (state.status == AuthStatus.authenticated) {
-                      // Navigate to homepage
-                      log("Login : Authenticated");
+                    if (state.status == AuthStatus.login) {
+                      context.go("/home");
                     }
                   },
                   builder: (context, state) {
                     return CustomButton(
                       title: "Login",
                       onTap: () {
-                        context.read<AuthBloc>().add(
-                              LogInEvent(
-                                email: emailController.text,
-                                password: passwordController.text,
-                              ),
-                            );
+                        if (!emailController.text.contains("@")) {
+                          showSnackBar(context, "Invalid Email", isError: true);
+                        } else if (passwordController.text.length < 6) {
+                          showSnackBar(
+                            context,
+                            "Password should be atleast 6 characters",
+                            isError: true,
+                          );
+                        } else {
+                          context.read<AuthBloc>().add(
+                                LogInEvent(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                ),
+                              );
+                        }
                       },
                       isLoading: (state.status == AuthStatus.loading),
                     );
