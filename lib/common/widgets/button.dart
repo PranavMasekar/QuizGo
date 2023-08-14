@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:quiz_go/constants/export_constants.dart';
+import 'package:quiz_go/helpers/export_helpers.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
@@ -29,10 +31,17 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.r),
         ),
         child: Center(
-          child: Text(
-            title,
-            style: MyTextStyles.largeTextStyle,
-          ),
+          child: isLoading
+              ? Lottie.asset(
+                  AssetHelper.circularAnimation,
+                  repeat: true,
+                  fit: BoxFit.fill,
+                  frameRate: FrameRate(60),
+                )
+              : Text(
+                  title,
+                  style: MyTextStyles.largeTextStyle,
+                ),
         ),
       ),
     );

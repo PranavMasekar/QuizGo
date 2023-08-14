@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_go/models/export_models.dart';
 import 'package:quiz_go/services/auth_service.dart';
 
 part 'auth_event.dart';
@@ -17,19 +18,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _onSignUpEvent(SignUpEvent event, Emitter emit) async {
+    emit(state.copyWith(status: AuthStatus.loading));
     try {
-      emit(state.copyWith(status: AuthStatus.loading));
       final signUpResponse =
           await _service.signUp(event.email, event.password, event.userName);
+
+      late UserModel userModel;
       signUpResponse.fold(
         (error) => throw error.message,
-        (user) async {
-          final res = await _service.saveToFirestore(user.toMap());
-          res.fold(
-            (error) => throw error.message,
-            (success) => emit(state.copyWith(status: AuthStatus.authenticated)),
-          );
-        },
+        (user) => userModel = user,
+      );
+
+      final res = await _service.saveToFirestore(userModel.toMap());
+      res.fold(
+        (error) => throw error.message,
+        (success) => emit(state.copyWith(status: AuthStatus.authenticated)),
       );
     } catch (e) {
       emit(
@@ -44,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final signUpResponse = await _service.login(event.email, event.password);
       signUpResponse.fold(
         (error) => throw error.message,
-        (user) => emit(state.copyWith(status: AuthStatus.authenticated)),
+        (userId) => emit(state.copyWith(status: AuthStatus.authenticated)),
       );
     } catch (e) {
       emit(

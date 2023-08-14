@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_go/blocs/export_bloc.dart';
 import 'package:quiz_go/common/export_common.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/extensions/export_extension.dart';
@@ -76,9 +80,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 SizedBox(height: 45.h),
-                CustomButton(
-                  title: "SignUp",
-                  onTap: () {},
+                BlocConsumer<AuthBloc, AuthState>(
+                  listener: (context, state) {
+                    if (state.status == AuthStatus.error) {
+                      log("Error : ${state.errorMessage}");
+                    }
+                    if (state.status == AuthStatus.authenticated) {
+                      // Navigate to homepage
+                      log("Authenticated");
+                    }
+                  },
+                  builder: (context, state) {
+                    return CustomButton(
+                      title: "SignUp",
+                      onTap: () {
+                        context.read<AuthBloc>().add(
+                              SignUpEvent(
+                                email: emailController.text,
+                                password: passwordController.text,
+                                userName: userNameController.text,
+                              ),
+                            );
+                      },
+                      isLoading: state.status == AuthStatus.loading,
+                    );
+                  },
                 ),
                 SizedBox(height: 20.h),
                 InkWell(

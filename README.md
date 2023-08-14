@@ -31,6 +31,7 @@ flutter pub get
 * [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons)
 * [Flutter Svg](https://pub.dev/packages/flutter_svg)
 * [Fpdart](https://pub.dev/packages/fpdart)
+* [Lottie Animation](https://pub.dev/packages/lottie)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.

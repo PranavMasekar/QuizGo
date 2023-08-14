@@ -80,7 +80,7 @@ class AuthService {
   FutureAppEither<bool> saveToFirestore(Map<String, dynamic> data) async {
     try {
       final uid = _auth.currentUser!.uid;
-      _firestore.collection('users').doc(uid).update(data);
+      _firestore.collection('users').doc(uid).set(data);
       return right(true);
     } catch (error) {
       log("Error Message in saveToFirestore : $error");
