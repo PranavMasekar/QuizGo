@@ -12,21 +12,25 @@ class AppColors {
   static const Color redColor = Color(0xFFff3333);
   static const Color darkPurple = Color(0xFF080809);
   static const Color greenColor = Color(0xFF50C878);
+  static const Color purpleGradientColor = Color(0xFF131238);
+  static const Color pinkGradientColor = Color(0xFF40324b);
+  static Color creamGradientColor = const Color(0xFFda6d27).withOpacity(0.3);
+  static Color redGradientColor = const Color(0xFFc82f34).withOpacity(0.3);
 
   static RadialGradient purpleGradient = const RadialGradient(
-    colors: [Color(0xFF131238), primaryColor],
+    colors: [purpleGradientColor, primaryColor],
     radius: 0.7,
   );
   static RadialGradient pinkGradient = const RadialGradient(
-    colors: [Color(0xFF40324b), primaryColor],
+    colors: [pinkGradientColor, primaryColor],
     radius: 0.7,
   );
   static RadialGradient creamGradient = RadialGradient(
-    colors: [const Color(0xFFda6d27).withOpacity(0.3), primaryColor],
+    colors: [creamGradientColor, primaryColor],
     radius: 0.7,
   );
   static RadialGradient redGradient = RadialGradient(
-    colors: [const Color(0xFFc82f34).withOpacity(0.3), primaryColor],
+    colors: [redGradientColor, primaryColor],
     radius: 0.85,
   );
   static LinearGradient buttonGradient = const LinearGradient(

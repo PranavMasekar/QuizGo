@@ -23,7 +23,9 @@ class BackGround extends StatelessWidget {
               height: 200,
               width: 200,
               decoration: BoxDecoration(
-                  gradient: AppColors.purpleGradient, shape: BoxShape.circle),
+                gradient: AppColors.purpleGradient,
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           Positioned(
@@ -33,7 +35,9 @@ class BackGround extends StatelessWidget {
               height: 200,
               width: 200,
               decoration: BoxDecoration(
-                  gradient: AppColors.pinkGradient, shape: BoxShape.circle),
+                gradient: AppColors.pinkGradient,
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           Positioned(
@@ -43,7 +47,9 @@ class BackGround extends StatelessWidget {
               height: 200,
               width: 200,
               decoration: BoxDecoration(
-                  gradient: AppColors.creamGradient, shape: BoxShape.circle),
+                gradient: AppColors.creamGradient,
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           Positioned(

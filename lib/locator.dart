@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:quiz_go/blocs/export_bloc.dart';
@@ -15,8 +16,13 @@ Future<void> init() async {
   locator.registerLazySingleton(
     () => AuthService(auth: locator(), firestore: locator()),
   );
+  locator.registerLazySingleton(() => QuizService(client: locator()));
 
   //! Blocs
   locator.registerFactory(() => AuthBloc(service: locator()));
   locator.registerFactory(() => PasswordCubit());
+  locator.registerLazySingleton(() => QuizBloc(quizService: locator()));
+
+  //! Dependencies
+  locator.registerLazySingleton(() => Dio());
 }

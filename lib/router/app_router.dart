@@ -46,6 +46,13 @@ class AppRouter {
           return const HomePage();
         },
       ),
+      GoRoute(
+        path: '/quiz',
+        builder: (context, state) {
+          final category = state.extra as String;
+          return QuizPage(category: category);
+        },
+      ),
     ],
   );
 }

@@ -32,6 +32,7 @@ flutter pub get
 * [Flutter Svg](https://pub.dev/packages/flutter_svg)
 * [Fpdart](https://pub.dev/packages/fpdart)
 * [Lottie Animation](https://pub.dev/packages/lottie)
+* [Staggered Grid View](https://pub.dev/packages/flutter_staggered_grid_view)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
