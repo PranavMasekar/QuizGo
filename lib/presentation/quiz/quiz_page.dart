@@ -5,6 +5,7 @@ import 'package:quiz_go/blocs/export_bloc.dart';
 import 'package:quiz_go/common/export_common.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/extensions/export_extension.dart';
+import 'package:quiz_go/presentation/export_presentation.dart';
 
 class QuizPage extends StatefulWidget {
   final String category;
@@ -15,10 +16,19 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  late final PageController _pageController;
+
   @override
   void initState() {
     context.read<QuizBloc>().add(LoadQuizEvent(category: widget.category));
+    _pageController = PageController();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,10 +46,28 @@ class _QuizPageState extends State<QuizPage> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: state.status == QuizStatus.loading
                     ? const LoadingWidget()
-                    : Column(
-                        children: [
-                          SizedBox(height: 80.h),
-                        ],
+                    : Padding(
+                        padding: EdgeInsets.only(top: 80.h),
+                        child: PageView.builder(
+                          controller: _pageController,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: state.quiz.length,
+                          itemBuilder: (context, index) {
+                            return QuestionPage(
+                              question: state.quiz[index],
+                              onChanged: () {
+                                if (index == state.quiz.length - 1) {
+                                  //! Leaderboard Route
+                                } else {
+                                  _pageController.nextPage(
+                                    duration: const Duration(milliseconds: 200),
+                                    curve: Curves.easeIn,
+                                  );
+                                }
+                              },
+                            );
+                          },
+                        ),
                       ),
               ),
             ),

@@ -33,6 +33,8 @@ flutter pub get
 * [Fpdart](https://pub.dev/packages/fpdart)
 * [Lottie Animation](https://pub.dev/packages/lottie)
 * [Staggered Grid View](https://pub.dev/packages/flutter_staggered_grid_view)
+* [Auto Size Text](https://pub.dev/packages/auto_size_text)
+* [Circular Countdown](https://pub.dev/packages/circular_countdown_timer)
 
 ### Folder Structure
 Here is the core folder structure which flutter provides.
