@@ -18,6 +18,7 @@ class QuizService {
         queryParameters: {
           "apiKey": "13tmNQnZ9tysUNHRI6X533wej3BOzF0o4ilK6Nee",
           "tags": category,
+          "limit": 6,
         },
       );
       log("Response Code From FetchQuiz : ${response.statusCode}");

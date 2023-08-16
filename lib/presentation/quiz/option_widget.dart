@@ -6,7 +6,25 @@ import 'package:quiz_go/models/export_models.dart';
 
 class OptionWidget extends StatelessWidget {
   final Option option;
-  const OptionWidget({super.key, required this.option});
+  final bool isOptionSelected;
+  final String correctOptionId;
+
+  const OptionWidget({
+    super.key,
+    required this.option,
+    required this.isOptionSelected,
+    required this.correctOptionId,
+  });
+
+  Color getColor() {
+    if (isOptionSelected && correctOptionId == option.id) {
+      return AppColors.greenColor;
+    } else if (isOptionSelected) {
+      return AppColors.redColor;
+    } else {
+      return AppColors.greyColor;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +32,8 @@ class OptionWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       margin: EdgeInsets.only(bottom: 15.h),
       decoration: BoxDecoration(
-        color: AppColors.greyColor.withOpacity(0.25),
-        border: Border.all(color: AppColors.greyColor),
+        color: getColor().withOpacity(0.25),
+        border: Border.all(color: getColor()),
         borderRadius: BorderRadius.all(Radius.circular(15.r)),
       ),
       child: AutoSizeText(
