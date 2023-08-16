@@ -21,7 +21,8 @@ Future<void> init() async {
   //! Blocs
   locator.registerFactory(() => AuthBloc(service: locator()));
   locator.registerFactory(() => PasswordCubit());
-  locator.registerLazySingleton(() => QuizBloc(quizService: locator()));
+  locator.registerFactory(() => QuizBloc(quizService: locator()));
+  locator.registerFactory(() => ScoreCubit());
 
   //! Dependencies
   locator.registerLazySingleton(() => Dio());

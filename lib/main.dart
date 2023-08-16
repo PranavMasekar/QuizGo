@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => locator.get<AuthBloc>()),
             BlocProvider(create: (context) => locator.get<PasswordCubit>()),
             BlocProvider(create: (context) => locator.get<QuizBloc>()),
+            BlocProvider(create: (context) => locator.get<ScoreCubit>()),
           ],
           child: MaterialApp.router(
             title: 'QuizGo',

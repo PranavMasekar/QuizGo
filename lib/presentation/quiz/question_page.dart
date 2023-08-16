@@ -23,17 +23,13 @@ class QuestionPage extends StatefulWidget {
 }
 
 class QuestionPageState extends State<QuestionPage> {
-  late final CountDownController controller;
-
   @override
   void initState() {
-    controller = CountDownController();
     super.initState();
   }
 
   @override
   void dispose() {
-    controller.reset();
     super.dispose();
   }
 
@@ -95,6 +91,9 @@ class QuestionPageState extends State<QuestionPage> {
                       context
                           .read<QuestionBloc>()
                           .add(SelectedOptionEvent(optionId: option.id));
+                      if (option.id == widget.question.correctOption) {
+                        context.read<ScoreCubit>().addCorrectAnswer();
+                      }
                       Future.delayed(
                         const Duration(seconds: 2),
                         () {

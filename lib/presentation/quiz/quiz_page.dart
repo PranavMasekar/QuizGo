@@ -36,7 +36,11 @@ class _QuizPageState extends State<QuizPage> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: BlocConsumer<QuizBloc, QuizState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.status == QuizStatus.loaded) {
+            context.read<ScoreCubit>().setQuiz(state.quiz.length);
+          }
+        },
         builder: (context, state) {
           return BackGround(
             child: SizedBox(
