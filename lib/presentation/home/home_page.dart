@@ -34,17 +34,20 @@ class HomePage extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 15,
-                  children: List.generate(4, (index) {
-                    return QuizCard(
-                      height: index % 2 == 0 ? 200 : 160,
-                      width: index % 2 != 0 ? 200 : 160,
-                      color: AppColors.pinkGradientColor,
-                      ontap: () {
-                        context.push('/quiz', extra: 'Docker');
-                      },
-                      name: 'Docker',
-                    );
-                  }),
+                  children: List.generate(
+                    4,
+                    (index) {
+                      return QuizCard(
+                        height: index % 2 == 0 ? 200 : 160,
+                        width: index % 2 != 0 ? 200 : 160,
+                        color: AppColors.pinkGradientColor,
+                        ontap: () {
+                          context.push('/quiz', extra: 'Docker');
+                        },
+                        name: 'Docker',
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
