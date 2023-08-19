@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -38,15 +39,17 @@ class HomePage extends StatelessWidget {
                     techQuizCategories.length,
                     (index) {
                       final quiz = techQuizCategories[index];
-                      return QuizCard(
-                        height: quiz["height"],
-                        width: 200,
-                        color: quiz["color"],
-                        svgPath: quiz["icon"],
-                        ontap: () {
-                          context.push('/quiz', extra: quiz["category"]);
-                        },
-                        name: quiz["category"],
+                      return SlideInUp(
+                        child: QuizCard(
+                          height: quiz["height"],
+                          width: 200,
+                          color: quiz["color"],
+                          svgPath: quiz["icon"],
+                          ontap: () {
+                            context.push('/quiz', extra: quiz["category"]);
+                          },
+                          name: quiz["category"],
+                        ),
                       );
                     },
                   ),

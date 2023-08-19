@@ -24,6 +24,7 @@ flutter pub get
 * [Firestore](https://pub.dev/packages/cloud_firestore)
 * [Go Router](https://pub.dev/packages/go_router)
 * [Dio](https://pub.dev/packages/dio)
+* [Animation](https://pub.dev/packages/animate_do)
 * [Get It](https://pub.dev/packages/get_it)
 * [Equatable](https://pub.dev/packages/equatable)
 * [Flutter ScreenUtil](https://pub.dev/packages/flutter_screenutil)
