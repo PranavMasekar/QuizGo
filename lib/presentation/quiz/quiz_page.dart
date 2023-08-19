@@ -8,8 +8,8 @@ import 'package:quiz_go/extensions/export_extension.dart';
 import 'package:quiz_go/presentation/export_presentation.dart';
 
 class QuizPage extends StatefulWidget {
+  const QuizPage({required this.category, super.key});
   final String category;
-  const QuizPage({super.key, required this.category});
 
   @override
   State<QuizPage> createState() => _QuizPageState();

@@ -3,15 +3,15 @@ part of 'quiz_bloc.dart';
 enum QuizStatus { initial, loading, loaded, error }
 
 class QuizState extends Equatable {
-  final List<QuestionModel> quiz;
-  final String errorMessage;
-  final QuizStatus status;
 
   const QuizState({
     required this.status,
     this.quiz = const [],
-    this.errorMessage = "",
+    this.errorMessage = '',
   });
+  final List<QuestionModel> quiz;
+  final String errorMessage;
+  final QuizStatus status;
 
   static QuizState initial() => const QuizState(status: QuizStatus.initial);
 

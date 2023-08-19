@@ -10,13 +10,13 @@ class ScoreCubit extends Cubit<ScoreState> {
 
   void setQuiz(int totalQuestions) {
     emit(state.copyWith(totalQuestions: totalQuestions, correctQuestion: 0));
-    log("Current Quiz : ${state.correctQuestion} / ${state.totalQuestions}");
+    log('Current Quiz : ${state.correctQuestion} / ${state.totalQuestions}');
   }
 
   void addCorrectAnswer() {
-    int correctQuestions = state.correctQuestion;
+    final correctQuestions = state.correctQuestion;
     emit(state.copyWith(correctQuestion: correctQuestions + 1));
-    log("New Score : ${state.correctQuestion} / ${state.totalQuestions}");
+    log('New Score : ${state.correctQuestion} / ${state.totalQuestions}');
   }
 
   void resetQuiz() {

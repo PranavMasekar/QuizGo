@@ -4,19 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 
 class QuizCard extends StatelessWidget {
+
+  const QuizCard({
+    required this.height, required this.width, required this.color, required this.ontap, required this.name, super.key,
+  });
   final int height, width;
   final Color color;
   final VoidCallback ontap;
   final String name;
-
-  const QuizCard({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.color,
-    required this.ontap,
-    required this.name,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

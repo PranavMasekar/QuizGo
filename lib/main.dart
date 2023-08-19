@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiz_go/blocs/export_bloc.dart';
+import 'package:quiz_go/constants/export_constants.dart';
+import 'package:quiz_go/firebase_options.dart';
+import 'package:quiz_go/locator.dart';
 import 'package:quiz_go/router/export_router.dart';
-
-import 'constants/export_constants.dart';
-import 'firebase_options.dart';
-import 'locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

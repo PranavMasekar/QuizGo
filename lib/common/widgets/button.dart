@@ -4,19 +4,17 @@ import 'package:quiz_go/common/export_common.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 
 class CustomButton extends StatelessWidget {
+
+  const CustomButton({
+    required this.title, required this.onTap, super.key,
+    this.height = 50,
+    this.width = 230,
+    this.isLoading = false,
+  });
   final String title;
   final double height, width;
   final bool isLoading;
   final VoidCallback onTap;
-
-  const CustomButton({
-    super.key,
-    required this.title,
-    this.height = 50,
-    this.width = 230,
-    this.isLoading = false,
-    required this.onTap,
-  });
 
   @override
   Widget build(BuildContext context) {

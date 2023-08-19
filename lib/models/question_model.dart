@@ -2,16 +2,40 @@ import 'package:flutter/foundation.dart';
 import 'package:quiz_go/models/export_models.dart';
 
 class QuestionModel {
-  final int id;
-  final String question;
-  final List<Option> options;
-  final String correctOption;
   QuestionModel({
     required this.id,
     required this.question,
     required this.options,
     required this.correctOption,
   });
+
+  factory QuestionModel.fromMap(Map<String, dynamic> map) {
+    final options = <Option>[];
+    map['answers'].forEach((key, value) {
+      if (value != null) {
+        options.add(Option(id: key, text: value));
+      }
+    });
+
+    var correctOptionKey = '';
+    map['correct_answers'].forEach((key, value) {
+      if (value == 'true') {
+        correctOptionKey = key;
+        return;
+      }
+    });
+
+    return QuestionModel(
+      id: map['id'] as int,
+      question: map['question'] as String,
+      options: options,
+      correctOption: correctOptionKey.replaceAll('_correct', ''),
+    );
+  }
+  final int id;
+  final String question;
+  final List<Option> options;
+  final String correctOption;
 
   QuestionModel copyWith({
     int? id,
@@ -24,30 +48,6 @@ class QuestionModel {
       question: question ?? this.question,
       options: options ?? this.options,
       correctOption: correctOption ?? this.correctOption,
-    );
-  }
-
-  factory QuestionModel.fromMap(Map<String, dynamic> map) {
-    List<Option> options = [];
-    map["answers"].forEach((key, value) {
-      if (value != null) {
-        options.add(Option(id: key, text: value));
-      }
-    });
-
-    String correctOptionKey = '';
-    map["correct_answers"].forEach((key, value) {
-      if (value == "true") {
-        correctOptionKey = key;
-        return;
-      }
-    });
-
-    return QuestionModel(
-      id: map['id'] as int,
-      question: map['question'] as String,
-      options: options,
-      correctOption: correctOptionKey.replaceAll('_correct', ''),
     );
   }
 

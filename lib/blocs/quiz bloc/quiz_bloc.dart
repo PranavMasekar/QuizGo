@@ -17,7 +17,10 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
   final QuizService _quizService;
 
-  Future<void> _onLoadQuizEvent(LoadQuizEvent event, Emitter emit) async {
+  Future<void> _onLoadQuizEvent(
+    LoadQuizEvent event,
+    Emitter<QuizState> emit,
+  ) async {
     emit(state.copyWith(status: QuizStatus.loading));
     try {
       final quizResponse = await _quizService.loadQuiz(event.category);
@@ -28,12 +31,12 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         (d) => data = d,
       );
 
-      List<QuestionModel> quiz = [];
-      for (Map<String, dynamic> item in data) {
+      final quiz = <QuestionModel>[];
+      for (final Map<String, dynamic> item in data) {
         quiz.add(QuestionModel.fromMap(item));
       }
 
-      log("Deserialized Data\n");
+      log('Deserialized Data\n');
       log(quiz.length.toString());
       emit(state.copyWith(status: QuizStatus.loaded, quiz: quiz));
     } catch (e) {

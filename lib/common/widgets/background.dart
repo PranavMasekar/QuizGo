@@ -5,8 +5,8 @@ import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/extensions/export_extension.dart';
 
 class BackGround extends StatelessWidget {
+  const BackGround({required this.child, super.key});
   final Widget child;
-  const BackGround({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +59,12 @@ class BackGround extends StatelessWidget {
               height: 200,
               width: 200,
               decoration: BoxDecoration(
-                  gradient: AppColors.redGradient, shape: BoxShape.circle),
+                  gradient: AppColors.redGradient, shape: BoxShape.circle,),
             ),
           ),
           ClipRRect(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0),
+              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
               child: SizedBox(
                 height: context.getHeight(),
                 width: context.getWidth(),

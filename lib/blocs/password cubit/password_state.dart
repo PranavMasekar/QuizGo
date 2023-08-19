@@ -1,9 +1,9 @@
 part of 'password_cubit.dart';
 
 class PasswordState extends Equatable {
-  final bool showPassword;
 
   const PasswordState({this.showPassword = false});
+  final bool showPassword;
 
   static PasswordState initial() => const PasswordState();
 

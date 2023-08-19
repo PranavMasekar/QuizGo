@@ -8,14 +8,14 @@ import 'package:quiz_go/helpers/export_helpers.dart';
 import 'package:quiz_go/models/export_models.dart';
 
 class AuthService {
-  final FirebaseAuth _auth;
-  final FirebaseFirestore _firestore;
 
   AuthService({
     required FirebaseAuth auth,
     required FirebaseFirestore firestore,
   })  : _auth = auth,
         _firestore = firestore;
+  final FirebaseAuth _auth;
+  final FirebaseFirestore _firestore;
 
   /// Returns [UseModel] object on success and [AppError] on failure
   FutureAppEither<UserModel> signUp(
@@ -24,44 +24,44 @@ class AuthService {
     String userName,
   ) async {
     try {
-      UserCredential result = await _auth.createUserWithEmailAndPassword(
+      final result = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      User? user = result.user;
+      final user = result.user;
       if (user == null) {
-        throw "Something went wrong!!!";
+        throw 'Something went wrong!!!';
       }
-      UserModel userModel = UserModel(email: email, userName: userName);
+      final userModel = UserModel(email: email, userName: userName);
       return right(userModel);
     } on FirebaseAuthException catch (error) {
-      String messaage = FirebaseHelper.getMessageFromErrorCode(error);
+      final messaage = FirebaseHelper.getMessageFromErrorCode(error);
       return left(AppError(message: messaage));
     } catch (e) {
-      log("Error Message in SignUp : $e");
+      log('Error Message in SignUp : $e');
       return left(AppError(message: e.toString()));
     }
   }
 
   FutureAppEither<String> login(String email, String password) async {
     try {
-      UserCredential result = await _auth.signInWithEmailAndPassword(
+      final result = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      User? user = result.user;
+      final user = result.user;
       if (user == null) {
-        throw "Something went wrong!!!";
+        throw 'Something went wrong!!!';
       }
 
       return right(user.uid);
     } on FirebaseAuthException catch (error) {
-      String messaage = FirebaseHelper.getMessageFromErrorCode(error);
+      final messaage = FirebaseHelper.getMessageFromErrorCode(error);
       return left(AppError(message: messaage));
     } catch (e) {
-      log("Error Message in SignUp : $e");
+      log('Error Message in SignUp : $e');
       return left(AppError(message: e.toString()));
     }
   }
@@ -71,8 +71,8 @@ class AuthService {
       await _auth.signOut();
       return right(true);
     } catch (error) {
-      log("Error Message in signOut : $error");
-      return left(AppError(message: "Something went wrong"));
+      log('Error Message in signOut : $error');
+      return left(AppError(message: 'Something went wrong'));
     }
   }
 
@@ -80,12 +80,12 @@ class AuthService {
   FutureAppEither<bool> saveToFirestore(Map<String, dynamic> data) async {
     try {
       final uid = _auth.currentUser!.uid;
-      _firestore.collection('users').doc(uid).set(data);
+      await _firestore.collection('users').doc(uid).set(data);
       return right(true);
     } catch (error) {
-      log("Error Message in saveToFirestore : $error");
+      log('Error Message in saveToFirestore : $error');
       return left(
-        AppError(message: "Failured in updating user"),
+        AppError(message: 'Failured in updating user'),
       );
     }
   }

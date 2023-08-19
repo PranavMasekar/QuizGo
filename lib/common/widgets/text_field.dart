@@ -3,20 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 
 class MyTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final Widget? prefixIcon, suffixIcon;
-  final TextInputType inputType;
-  final bool isObsecure;
   const MyTextField({
-    super.key,
-    required this.controller,
-    this.hintText = "",
+    required this.controller, super.key,
+    this.hintText = '',
     this.inputType = TextInputType.text,
     this.prefixIcon,
     this.suffixIcon,
     this.isObsecure = false,
   });
+  final TextEditingController controller;
+  final String hintText;
+  final Widget? prefixIcon, suffixIcon;
+  final TextInputType inputType;
+  final bool isObsecure;
 
   @override
   Widget build(BuildContext context) {

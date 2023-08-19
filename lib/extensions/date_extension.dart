@@ -22,9 +22,9 @@ extension DateFormatting on DateTime {
   }
 
   String toFormattedDateWithMonthName() {
-    String formattedDate = DateFormat('MMMM y').format(this);
-    String dayWithSuffix = '$day${_getDaySuffix(day)}';
-    String formattedDateWithSuffix = '$dayWithSuffix $formattedDate';
+    final formattedDate = DateFormat('MMMM y').format(this);
+    final dayWithSuffix = '$day${_getDaySuffix(day)}';
+    final formattedDateWithSuffix = '$dayWithSuffix $formattedDate';
     return formattedDateWithSuffix;
   }
 

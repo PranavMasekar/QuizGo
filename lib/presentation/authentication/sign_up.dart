@@ -35,19 +35,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Welcome",
+                  'Welcome',
                   style: MyTextStyles.extraLargeTextStyle
                       .copyWith(fontSize: 26.sp),
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  "Create account to get started!",
+                  'Create account to get started!',
                   style: MyTextStyles.normalTextStyle,
                 ),
                 SizedBox(height: 30.h),
                 MyTextField(
                   controller: userNameController,
-                  hintText: "Username",
+                  hintText: 'Username',
                   inputType: TextInputType.name,
                   prefixIcon: const Icon(
                     Icons.person_outline_rounded,
@@ -57,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(height: 15.h),
                 MyTextField(
                   controller: emailController,
-                  hintText: "Email",
+                  hintText: 'Email',
                   inputType: TextInputType.emailAddress,
                   prefixIcon: const Icon(
                     Icons.email_outlined,
@@ -69,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   builder: (context, passwordState) {
                     return MyTextField(
                       controller: passwordController,
-                      hintText: "Password",
+                      hintText: 'Password',
                       inputType: TextInputType.visiblePassword,
                       prefixIcon: const Icon(
                         Icons.lock_outline_rounded,
@@ -94,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 BlocConsumer<AuthBloc, AuthState>(
                   listener: (context, state) {
                     if (state.status == AuthStatus.error) {
-                      log("Error : ${state.errorMessage}");
+                      log('Error : ${state.errorMessage}');
                       showSnackBar(
                         context,
                         state.errorMessage,
@@ -102,25 +102,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       );
                     }
                     if (state.status == AuthStatus.signup) {
-                      context.go("/home");
+                      context.go('/home');
                     }
                   },
                   builder: (context, state) {
                     return CustomButton(
-                      title: "SignUp",
+                      title: 'SignUp',
                       onTap: () {
-                        if (!emailController.text.contains("@")) {
-                          showSnackBar(context, "Invalid Email", isError: true);
+                        if (!emailController.text.contains('@')) {
+                          showSnackBar(context, 'Invalid Email', isError: true);
                         } else if (passwordController.text.length < 6) {
                           showSnackBar(
                             context,
-                            "Password should be atleast 6 characters",
+                            'Password should be atleast 6 characters',
                             isError: true,
                           );
-                        } else if (userNameController.text == "") {
+                        } else if (userNameController.text == '') {
                           showSnackBar(
                             context,
-                            "Invalid Username",
+                            'Invalid Username',
                             isError: true,
                           );
                         } else {
@@ -146,11 +146,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "Already have an account?",
+                          text: 'Already have an account?',
                           style: MyTextStyles.normalTextStyle,
                         ),
                         TextSpan(
-                          text: " Login",
+                          text: ' Login',
                           style: MyTextStyles.largeTextStyle,
                         ),
                       ],

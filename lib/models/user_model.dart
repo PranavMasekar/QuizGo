@@ -1,10 +1,17 @@
 class UserModel {
-  final String email;
-  final String userName;
   UserModel({
     required this.email,
     required this.userName,
   });
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      email: map['email'] as String,
+      userName: map['userName'] as String,
+    );
+  }
+  final String email;
+  final String userName;
 
   UserModel copyWith({
     String? email,
@@ -21,13 +28,6 @@ class UserModel {
       'email': email,
       'userName': userName,
     };
-  }
-
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
-      email: map['email'] as String,
-      userName: map['userName'] as String,
-    );
   }
 
   @override

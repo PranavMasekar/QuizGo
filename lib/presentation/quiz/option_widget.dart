@@ -5,16 +5,13 @@ import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/models/export_models.dart';
 
 class OptionWidget extends StatelessWidget {
+
+  const OptionWidget({
+    required this.option, required this.isOptionSelected, required this.correctOptionId, super.key,
+  });
   final Option option;
   final bool isOptionSelected;
   final String correctOptionId;
-
-  const OptionWidget({
-    super.key,
-    required this.option,
-    required this.isOptionSelected,
-    required this.correctOptionId,
-  });
 
   Color getColor() {
     if (isOptionSelected && correctOptionId == option.id) {

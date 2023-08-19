@@ -5,7 +5,7 @@ import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/helpers/export_helpers.dart';
 
 void showSnackBar(BuildContext context, String content,
-    {bool isError = false}) {
+    {bool isError = false,}) {
   ScaffoldMessenger.of(context)
     ..removeCurrentSnackBar()
     ..showSnackBar(

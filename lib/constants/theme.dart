@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'export_constants.dart';
+import 'package:quiz_go/constants/export_constants.dart';
 
 ThemeData darkTheme() {
   return ThemeData(

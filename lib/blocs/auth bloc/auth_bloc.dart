@@ -7,7 +7,6 @@ part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthService _service;
 
   AuthBloc({required AuthService service})
       : _service = service,
@@ -16,6 +15,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LogInEvent>(_onLogInEvent);
     on<LogOutEvent>(_onLogOutEvent);
   }
+  final AuthService _service;
 
   Future<void> _onSignUpEvent(SignUpEvent event, Emitter emit) async {
     emit(state.copyWith(status: AuthStatus.loading));

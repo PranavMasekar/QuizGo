@@ -5,8 +5,8 @@ sealed class QuestionEvent extends Equatable {
 }
 
 class SelectedOptionEvent extends QuestionEvent {
-  final String optionId;
   const SelectedOptionEvent({required this.optionId});
+  final String optionId;
 
   @override
   List<Object?> get props => [optionId];

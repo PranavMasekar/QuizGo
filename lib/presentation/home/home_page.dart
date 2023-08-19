@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
               children: [
                 SizedBox(height: 80.h),
                 Text(
-                  "Programming",
+                  'Programming',
                   style: MyTextStyles.extraLargeTextStyle
                       .copyWith(fontSize: 24.sp),
                 ),
@@ -40,9 +40,9 @@ class HomePage extends StatelessWidget {
                       width: index % 2 != 0 ? 200 : 160,
                       color: AppColors.pinkGradientColor,
                       ontap: () {
-                        context.push('/quiz', extra: "Docker");
+                        context.push('/quiz', extra: 'Docker');
                       },
-                      name: "Docker",
+                      name: 'Docker',
                     );
                   }),
                 ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/helpers/export_helpers.dart';
-
-import 'export_constants.dart';
 
 class MyTextStyles {
   static TextStyle get thinTextStyle => TextStyle(

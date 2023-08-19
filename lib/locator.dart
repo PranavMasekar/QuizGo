@@ -10,7 +10,7 @@ final locator = GetIt.instance;
 
 Future<void> init() async {
   //! Singletons
-  locator.registerLazySingleton(() => AppRouter());
+  locator.registerLazySingleton(AppRouter.new);
   locator.registerLazySingleton(() => FirebaseAuth.instance);
   locator.registerLazySingleton(() => FirebaseFirestore.instance);
   locator.registerLazySingleton(
@@ -20,10 +20,10 @@ Future<void> init() async {
 
   //! Blocs
   locator.registerFactory(() => AuthBloc(service: locator()));
-  locator.registerFactory(() => PasswordCubit());
+  locator.registerFactory(PasswordCubit.new);
   locator.registerFactory(() => QuizBloc(quizService: locator()));
-  locator.registerFactory(() => ScoreCubit());
+  locator.registerFactory(ScoreCubit.new);
 
   //! Dependencies
-  locator.registerLazySingleton(() => Dio());
+  locator.registerLazySingleton(Dio.new);
 }

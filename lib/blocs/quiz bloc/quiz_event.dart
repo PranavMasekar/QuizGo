@@ -5,9 +5,9 @@ sealed class QuizEvent extends Equatable {
 }
 
 class LoadQuizEvent extends QuizEvent {
-  final String category;
 
   const LoadQuizEvent({required this.category});
+  final String category;
 
   @override
   List<Object?> get props => [category];

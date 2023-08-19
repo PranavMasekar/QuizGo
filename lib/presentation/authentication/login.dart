@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Hello Again!",
+                  'Hello Again!',
                   style: MyTextStyles.extraLargeTextStyle
                       .copyWith(fontSize: 26.sp),
                 ),
@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 30.h),
                 MyTextField(
                   controller: emailController,
-                  hintText: "Email",
+                  hintText: 'Email',
                   inputType: TextInputType.emailAddress,
                   prefixIcon: const Icon(
                     Icons.email_outlined,
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   builder: (context, passwordState) {
                     return MyTextField(
                       controller: passwordController,
-                      hintText: "Password",
+                      hintText: 'Password',
                       inputType: TextInputType.visiblePassword,
                       prefixIcon: const Icon(
                         Icons.lock_outline_rounded,
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 BlocConsumer<AuthBloc, AuthState>(
                   listener: (context, state) {
                     if (state.status == AuthStatus.error) {
-                      log("Error : ${state.errorMessage}");
+                      log('Error : ${state.errorMessage}');
                       showSnackBar(
                         context,
                         state.errorMessage,
@@ -91,19 +91,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     }
                     if (state.status == AuthStatus.login) {
-                      context.go("/home");
+                      context.go('/home');
                     }
                   },
                   builder: (context, state) {
                     return CustomButton(
-                      title: "Login",
+                      title: 'Login',
                       onTap: () {
-                        if (!emailController.text.contains("@")) {
-                          showSnackBar(context, "Invalid Email", isError: true);
+                        if (!emailController.text.contains('@')) {
+                          showSnackBar(context, 'Invalid Email', isError: true);
                         } else if (passwordController.text.length < 6) {
                           showSnackBar(
                             context,
-                            "Password should be atleast 6 characters",
+                            'Password should be atleast 6 characters',
                             isError: true,
                           );
                         } else {
@@ -115,14 +115,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                         }
                       },
-                      isLoading: (state.status == AuthStatus.loading),
+                      isLoading: state.status == AuthStatus.loading,
                     );
                   },
                 ),
                 SizedBox(height: 20.h),
                 InkWell(
                   onTap: () {
-                    context.push("/signup");
+                    context.push('/signup');
                   },
                   child: RichText(
                     text: TextSpan(
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: MyTextStyles.normalTextStyle,
                         ),
                         TextSpan(
-                          text: " SignUp",
+                          text: ' SignUp',
                           style: MyTextStyles.largeTextStyle,
                         ),
                       ],

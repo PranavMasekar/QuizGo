@@ -9,9 +9,9 @@ enum AuthStatus {
 }
 
 class AuthState extends Equatable {
+  const AuthState({required this.status, this.errorMessage = ''});
   final AuthStatus status;
   final String errorMessage;
-  const AuthState({required this.status, this.errorMessage = ""});
 
   static AuthState initial() => const AuthState(status: AuthStatus.initial);
 

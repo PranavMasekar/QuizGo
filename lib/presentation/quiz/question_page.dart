@@ -9,14 +9,12 @@ import 'package:quiz_go/models/export_models.dart';
 import 'package:quiz_go/presentation/export_presentation.dart';
 
 class QuestionPage extends StatefulWidget {
-  final QuestionModel question;
-  final VoidCallback onChanged;
 
   const QuestionPage({
-    super.key,
-    required this.question,
-    required this.onChanged,
+    required this.question, required this.onChanged, super.key,
   });
+  final QuestionModel question;
+  final VoidCallback onChanged;
 
   @override
   State<QuestionPage> createState() => QuestionPageState();
@@ -45,8 +43,6 @@ class QuestionPageState extends State<QuestionPage> {
             width: 100.w,
             height: 100.h,
             isReverse: true,
-            autoStart: true,
-            isTimerTextShown: true,
             isReverseAnimation: true,
             strokeCap: StrokeCap.round,
             fillColor: AppColors.greenColor,
@@ -85,7 +81,7 @@ class QuestionPageState extends State<QuestionPage> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: widget.question.options.length,
                 itemBuilder: (context, index) {
-                  Option option = widget.question.options[index];
+                  final option = widget.question.options[index];
                   return InkWell(
                     onTap: () {
                       context
