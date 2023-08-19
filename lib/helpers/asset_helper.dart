@@ -14,4 +14,5 @@ class AssetHelper {
   static const String circularAnimation =
       '$animationPath/circular_indicator.json';
   static const String loadingAnimation = '$animationPath/loading.json';
+  static const String winningAnimation = '$animationPath/winning.json';
 }

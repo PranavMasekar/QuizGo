@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quiz_go/blocs/export_bloc.dart';
 import 'package:quiz_go/common/export_common.dart';
 import 'package:quiz_go/constants/export_constants.dart';
@@ -61,7 +62,7 @@ class _QuizPageState extends State<QuizPage> {
                               question: state.quiz[index],
                               onChanged: () {
                                 if (index == state.quiz.length - 1) {
-                                  //! Leaderboard Route
+                                  context.pushReplacement('/score_page');
                                 } else {
                                   _pageController.nextPage(
                                     duration: const Duration(milliseconds: 200),

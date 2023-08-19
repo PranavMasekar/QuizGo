@@ -7,8 +7,7 @@ class AppRouter {
   GoRouter router = GoRouter(
     initialLocation: '/',
     redirect: (context, state) {
-      final isAuthenticated =
-          locator.get<FirebaseAuth>().currentUser != null;
+      final isAuthenticated = locator.get<FirebaseAuth>().currentUser != null;
       if (!isAuthenticated) {
         return '/login';
       } else {
@@ -51,6 +50,12 @@ class AppRouter {
         builder: (context, state) {
           final category = state.extra as String;
           return QuizPage(category: category);
+        },
+      ),
+      GoRoute(
+        path: '/score_page',
+        builder: (context, state) {
+          return const ScorePage();
         },
       ),
     ],

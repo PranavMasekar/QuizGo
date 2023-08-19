@@ -5,7 +5,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 
 class QuizService {
-
   QuizService({required Dio client}) : _client = client;
   final Dio _client;
 
@@ -18,7 +17,7 @@ class QuizService {
         queryParameters: {
           'apiKey': '13tmNQnZ9tysUNHRI6X533wej3BOzF0o4ilK6Nee',
           'tags': category,
-          'limit': 10,
+          'limit': 6,
         },
       );
       log('Response Code From FetchQuiz : ${response.statusCode}');
