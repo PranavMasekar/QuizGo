@@ -6,14 +6,6 @@ import 'package:quiz_go/presentation/export_presentation.dart';
 class AppRouter {
   GoRouter router = GoRouter(
     initialLocation: '/',
-    redirect: (context, state) {
-      final isAuthenticated = locator.get<FirebaseAuth>().currentUser != null;
-      if (!isAuthenticated) {
-        return '/login';
-      } else {
-        return null;
-      }
-    },
     routes: [
       GoRoute(
         path: '/',
