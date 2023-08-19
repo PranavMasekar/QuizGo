@@ -16,6 +16,11 @@ class AppColors {
   static const Color pinkGradientColor = Color(0xFF40324b);
   static Color creamGradientColor = const Color(0xFFda6d27).withOpacity(0.3);
   static Color redGradientColor = const Color(0xFFc82f34).withOpacity(0.3);
+  static Color dockerColor = const Color(0xFF0db7ed);
+  static Color linuxColor = const Color(0xFFffcc33);
+  static Color javaScriptColor = const Color(0xFFFFD43B);
+  static Color mySQLColor = const Color(0xFF00758f);
+  static Color kubernetesColor = const Color(0xFF123786);
 
   static RadialGradient purpleGradient = const RadialGradient(
     colors: [purpleGradientColor, primaryColor],

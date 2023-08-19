@@ -9,9 +9,10 @@ import 'package:quiz_go/models/export_models.dart';
 import 'package:quiz_go/presentation/export_presentation.dart';
 
 class QuestionPage extends StatefulWidget {
-
   const QuestionPage({
-    required this.question, required this.onChanged, super.key,
+    required this.question,
+    required this.onChanged,
+    super.key,
   });
   final QuestionModel question;
   final VoidCallback onChanged;
@@ -84,18 +85,20 @@ class QuestionPageState extends State<QuestionPage> {
                   final option = widget.question.options[index];
                   return InkWell(
                     onTap: () {
-                      context
-                          .read<QuestionBloc>()
-                          .add(SelectedOptionEvent(optionId: option.id));
-                      if (option.id == widget.question.correctOption) {
-                        context.read<ScoreCubit>().addCorrectAnswer();
+                      if (!state.isOptionSelected) {
+                        context
+                            .read<QuestionBloc>()
+                            .add(SelectedOptionEvent(optionId: option.id));
+                        if (option.id == widget.question.correctOption) {
+                          context.read<ScoreCubit>().addCorrectAnswer();
+                        }
+                        Future.delayed(
+                          const Duration(seconds: 2),
+                          () {
+                            widget.onChanged();
+                          },
+                        );
                       }
-                      Future.delayed(
-                        const Duration(seconds: 2),
-                        () {
-                          widget.onChanged();
-                        },
-                      );
                     },
                     child: OptionWidget(
                       option: option,
