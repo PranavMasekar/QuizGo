@@ -1,17 +1,21 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:html_unescape/html_unescape.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/models/export_models.dart';
 
 class OptionWidget extends StatelessWidget {
-
-  const OptionWidget({
-    required this.option, required this.isOptionSelected, required this.correctOptionId, super.key,
+  OptionWidget({
+    required this.option,
+    required this.isOptionSelected,
+    required this.correctOptionId,
+    super.key,
   });
   final Option option;
   final bool isOptionSelected;
   final String correctOptionId;
+  final unescape = HtmlUnescape();
 
   Color getColor() {
     if (isOptionSelected && correctOptionId == option.id) {
@@ -34,7 +38,7 @@ class OptionWidget extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(15.r)),
       ),
       child: AutoSizeText(
-        option.text,
+        unescape.convert(option.text),
         style: MyTextStyles.normalTextStyle.copyWith(
           fontSize: 16.sp,
           height: 1.3,

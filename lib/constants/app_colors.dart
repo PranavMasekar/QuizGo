@@ -14,6 +14,8 @@ class AppColors {
   static const Color greenColor = Color(0xFF50C878);
   static const Color purpleGradientColor = Color(0xFF131238);
   static const Color pinkGradientColor = Color(0xFF40324b);
+  static const Color earthColor = Color(0xFF5faded);
+  static const Color narutoColor = Color(0xFFf2a30b);
   static Color creamGradientColor = const Color(0xFFda6d27).withOpacity(0.3);
   static Color redGradientColor = const Color(0xFFc82f34).withOpacity(0.3);
   static Color dockerColor = const Color(0xFF0db7ed);

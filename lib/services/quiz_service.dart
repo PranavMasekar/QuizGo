@@ -8,7 +8,7 @@ class QuizService {
   QuizService({required Dio client}) : _client = client;
   final Dio _client;
 
-  FutureAppEither<List> loadQuiz(String category) async {
+  FutureAppEither<List> loadProgrammingQuiz(String category) async {
     try {
       const url = 'https://quizapi.io/api/v1/questions';
 
@@ -29,4 +29,29 @@ class QuizService {
       );
     }
   }
+
+  FutureAppEither<List> loadEntertainmentQuizes(int category) async {
+    try {
+      const url = 'https://opentdb.com/api.php';
+
+      final response = await _client.get(
+        url,
+        queryParameters: {
+          'category': category,
+          'difficulty': 'easy',
+          'amount': 6,
+        },
+      );
+      log('Response Code From FetchQuiz : ${response.statusCode}');
+      return right(response.data['results']);
+    } catch (error) {
+      log('Error Message in QuizService : $error');
+      return left(
+        AppError(message: 'Something went wrong!'),
+      );
+    }
+  }
 }
+
+// General Knowledge - 9 - category - difficulty - easy - amount - 6
+// https://opentdb.com/api.php

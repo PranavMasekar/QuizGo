@@ -19,42 +19,87 @@ class HomePage extends StatelessWidget {
         child: SizedBox(
           height: context.getHeight(),
           width: context.getWidth(),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 80.h),
-                Text(
-                  'Programming',
-                  style: MyTextStyles.extraLargeTextStyle
-                      .copyWith(fontSize: 24.sp),
-                ),
-                SizedBox(height: 30.h),
-                StaggeredGrid.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 15,
-                  children: List.generate(
-                    techQuizCategories.length,
-                    (index) {
-                      final quiz = techQuizCategories[index];
-                      return SlideInUp(
-                        child: QuizCard(
-                          height: quiz["height"],
-                          width: 200,
-                          color: quiz["color"],
-                          svgPath: quiz["icon"],
-                          ontap: () {
-                            context.push('/quiz', extra: quiz["category"]);
-                          },
-                          name: quiz["category"],
-                        ),
-                      );
-                    },
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 80.h),
+                  Text(
+                    'Programming Zone',
+                    style: MyTextStyles.extraLargeTextStyle
+                        .copyWith(fontSize: 24.sp),
                   ),
-                ),
-              ],
+                  SizedBox(height: 30.h),
+                  StaggeredGrid.count(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 15,
+                    children: List.generate(
+                      techQuizCategories.length,
+                      (index) {
+                        final quiz = techQuizCategories[index];
+                        return SlideInUp(
+                          child: QuizCard(
+                            height: quiz["height"],
+                            width: 200,
+                            color: quiz["color"],
+                            svgPath: quiz["icon"],
+                            ontap: () {
+                              context.push(
+                                '/quiz',
+                                extra: {
+                                  'category': quiz["category"],
+                                  'id': -1,
+                                },
+                              );
+                            },
+                            name: quiz["category"],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 30.h),
+                  Text(
+                    'Diverse Zone',
+                    style: MyTextStyles.extraLargeTextStyle
+                        .copyWith(fontSize: 24.sp),
+                  ),
+                  SizedBox(height: 30.h),
+                  StaggeredGrid.count(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 15,
+                    children: List.generate(
+                      entertainmentQuizCategories.length,
+                      (index) {
+                        final quiz = entertainmentQuizCategories[index];
+                        return SlideInUp(
+                          child: QuizCard(
+                            height: quiz["height"],
+                            width: 200,
+                            color: quiz["color"],
+                            svgPath: quiz["icon"],
+                            ontap: () {
+                              context.push(
+                                '/quiz',
+                                extra: {
+                                  'category': quiz["category"],
+                                  'id': quiz['id'],
+                                },
+                              );
+                            },
+                            name: quiz["category"],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 30.h),
+                ],
+              ),
             ),
           ),
         ),

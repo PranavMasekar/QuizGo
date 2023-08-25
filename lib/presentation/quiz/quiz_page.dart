@@ -9,8 +9,9 @@ import 'package:quiz_go/extensions/export_extension.dart';
 import 'package:quiz_go/presentation/export_presentation.dart';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({required this.category, super.key});
+  const QuizPage({required this.category, required this.id, super.key});
   final String category;
+  final int id;
 
   @override
   State<QuizPage> createState() => _QuizPageState();
@@ -21,7 +22,15 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   void initState() {
-    context.read<QuizBloc>().add(LoadQuizEvent(category: widget.category));
+    if (widget.id == -1) {
+      context
+          .read<QuizBloc>()
+          .add(LoadProgrammingQuizEvent(category: widget.category));
+    } else {
+      context
+          .read<QuizBloc>()
+          .add(LoadEntertainmentQuizEvent(category: widget.id));
+    }
     _pageController = PageController();
     super.initState();
   }

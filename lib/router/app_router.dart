@@ -40,8 +40,8 @@ class AppRouter {
       GoRoute(
         path: '/quiz',
         builder: (context, state) {
-          final category = state.extra as String;
-          return QuizPage(category: category);
+          final data = state.extra as Map;
+          return QuizPage(category: data['category'], id: data['id']);
         },
       ),
       GoRoute(

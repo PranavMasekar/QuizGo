@@ -4,6 +4,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:html_unescape/html_unescape.dart';
 import 'package:quiz_go/blocs/export_bloc.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/models/export_models.dart';
@@ -23,6 +24,7 @@ class QuestionPage extends StatefulWidget {
 }
 
 class QuestionPageState extends State<QuestionPage> {
+  final unescape = HtmlUnescape();
   @override
   void initState() {
     super.initState();
@@ -66,7 +68,7 @@ class QuestionPageState extends State<QuestionPage> {
                 borderRadius: BorderRadius.all(Radius.circular(15.r)),
               ),
               child: AutoSizeText(
-                widget.question.question,
+                unescape.convert(widget.question.question),
                 style: MyTextStyles.normalTextStyle.copyWith(
                   fontSize: 16.sp,
                   height: 1.3,

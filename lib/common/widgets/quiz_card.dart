@@ -47,9 +47,14 @@ class QuizCard extends StatelessWidget {
               child: SvgPicture.asset(svgPath),
             ),
             SizedBox(height: 15.h),
-            Text(
-              name,
-              style: MyTextStyles.largeTextStyle,
+            SizedBox(
+              width: width.w,
+              child: Text(
+                name,
+                style: MyTextStyles.largeTextStyle,
+                overflow: TextOverflow.clip,
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),

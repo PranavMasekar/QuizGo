@@ -16,10 +16,14 @@ class AssetHelper {
   static const String javaScriptSvg = '$iconPath/javascript.svg';
   static const String linuxSvg = '$iconPath/linux.svg';
   static const String mySQLSvg = '$iconPath/mysql.svg';
+  static const String earthSvg = '$iconPath/earth.svg';
+  static const String narutoSvg = '$iconPath/naruto.svg';
+  static const String gameSvg = '$iconPath/game.svg';
 
   // Lottie Animations
   static const String circularAnimation =
       '$animationPath/circular_indicator.json';
   static const String loadingAnimation = '$animationPath/loading.json';
   static const String trophyAnimation = '$animationPath/trophy.json';
+  static const String sadAnimation = '$animationPath/sad.json';
 }

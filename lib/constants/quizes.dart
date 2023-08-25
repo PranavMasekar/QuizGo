@@ -33,3 +33,26 @@ final List<Map<String, dynamic>> techQuizCategories = [
     "icon": AssetHelper.linuxSvg,
   },
 ];
+final List<Map<String, dynamic>> entertainmentQuizCategories = [
+  {
+    "category": "General Knowledge",
+    "color": AppColors.earthColor,
+    "height": 200,
+    "icon": AssetHelper.earthSvg,
+    "id": 9,
+  },
+  {
+    "category": "Anime",
+    "color": AppColors.narutoColor,
+    "height": 250,
+    "icon": AssetHelper.narutoSvg,
+    "id": 31,
+  },
+  {
+    "category": "Sports",
+    "color": AppColors.pinkShade.withOpacity(0.7),
+    "height": 200,
+    "icon": AssetHelper.gameSvg,
+    "id": 21,
+  },
+];

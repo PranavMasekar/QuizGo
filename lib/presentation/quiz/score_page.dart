@@ -28,7 +28,11 @@ class ScorePage extends StatelessWidget {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Lottie.asset(AssetHelper.trophyAnimation),
+                    Lottie.asset(
+                      state.correctQuestion < 3
+                          ? AssetHelper.sadAnimation
+                          : AssetHelper.trophyAnimation,
+                    ),
                     SizedBox(height: 15.h),
                     Text(
                       "Correct answeres ${state.correctQuestion} out of ${state.totalQuestions}",
