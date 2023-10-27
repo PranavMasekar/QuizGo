@@ -26,6 +26,12 @@ class AppRouter {
         },
       ),
       GoRoute(
+        path: '/reset-password',
+        builder: (context, state) {
+          return const ResetPassword();
+        },
+      ),
+      GoRoute(
         path: '/signup',
         builder: (context, state) {
           return const SignUpScreen();

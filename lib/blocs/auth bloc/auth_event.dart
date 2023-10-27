@@ -8,28 +8,36 @@ sealed class AuthEvent extends Equatable {
 }
 
 class SignUpEvent extends AuthEvent {
-
   const SignUpEvent({
-    required this.email,
     required this.password,
     required this.userName,
   });
-  final String email, password, userName;
+  final String password, userName;
 
   @override
-  List<Object> get props => [email, password, userName];
+  List<Object> get props => [password, userName];
 }
 
 class LogInEvent extends AuthEvent {
-
   const LogInEvent({
-    required this.email,
+    required this.username,
     required this.password,
   });
-  final String email, password;
+  final String username, password;
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [username, password];
+}
+
+class ResetPasswordEvent extends AuthEvent {
+  const ResetPasswordEvent({
+    required this.username,
+    required this.password,
+  });
+  final String username, password;
+
+  @override
+  List<Object> get props => [username, password];
 }
 
 class LogOutEvent extends AuthEvent {}

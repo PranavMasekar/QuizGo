@@ -9,16 +9,16 @@ import 'package:quiz_go/common/export_common.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/extensions/export_extension.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ResetPassword extends StatefulWidget {
+  const ResetPassword({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ResetPassword> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController usernameController = TextEditingController();
+class _SignUpScreenState extends State<ResetPassword> {
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,22 +34,22 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Hello Again!',
+                  'Welcome',
                   style: MyTextStyles.extraLargeTextStyle
                       .copyWith(fontSize: 26.sp),
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  "Welcome back you've been missed!",
+                  'Reset Password to get started!',
                   style: MyTextStyles.normalTextStyle,
                 ),
                 SizedBox(height: 30.h),
                 MyTextField(
-                  controller: usernameController,
+                  controller: userNameController,
                   hintText: 'Username',
                   inputType: TextInputType.name,
                   prefixIcon: const Icon(
-                    Icons.email_outlined,
+                    Icons.person_outline_rounded,
                     color: AppColors.textColor,
                   ),
                 ),
@@ -79,24 +79,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 ),
-                SizedBox(height: 20.h),
-                Row(
-                  children: [
-                    const Spacer(),
-                    InkWell(
-                      onTap: () {
-                        context.push('/reset-password');
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 10.w),
-                        child: Text(
-                          "Reset Password",
-                          style: MyTextStyles.normalTextStyle,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 SizedBox(height: 45.h),
                 BlocConsumer<AuthBloc, AuthState>(
                   listener: (context, state) {
@@ -108,16 +90,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         isError: true,
                       );
                     }
-                    if (state.status == AuthStatus.login) {
+                    if (state.status == AuthStatus.signup) {
                       context.go('/home');
                       showSnackBar(context, state.digest);
                     }
                   },
                   builder: (context, state) {
                     return CustomButton(
-                      title: 'Login',
+                      title: 'Reset Password',
                       onTap: () {
-                        if (usernameController.text == '') {
+                        if (userNameController.text == '') {
                           showSnackBar(
                             context,
                             'Enter valid username',
@@ -131,8 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         } else {
                           context.read<AuthBloc>().add(
-                                LogInEvent(
-                                  username: usernameController.text,
+                                ResetPasswordEvent(
+                                  username: userNameController.text,
                                   password: passwordController.text,
                                 ),
                               );
@@ -143,25 +125,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 SizedBox(height: 20.h),
-                InkWell(
-                  onTap: () {
-                    context.push('/signup');
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Don't have an account?",
-                          style: MyTextStyles.normalTextStyle,
-                        ),
-                        TextSpan(
-                          text: ' SignUp',
-                          style: MyTextStyles.largeTextStyle,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
               ],
             ),
           ),

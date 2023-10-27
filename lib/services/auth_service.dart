@@ -1,14 +1,13 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:quiz_go/constants/export_constants.dart';
-import 'package:quiz_go/helpers/export_helpers.dart';
-import 'package:quiz_go/models/export_models.dart';
 
 class AuthService {
-
   AuthService({
     required FirebaseAuth auth,
     required FirebaseFirestore firestore,
@@ -18,48 +17,78 @@ class AuthService {
   final FirebaseFirestore _firestore;
 
   /// Returns [UseModel] object on success and [AppError] on failure
-  FutureAppEither<UserModel> signUp(
-    String email,
-    String password,
+  FutureAppEither<String> signUp(
     String userName,
+    String password,
   ) async {
     try {
-      final result = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      CollectionReference shaUserCollection = _firestore.collection('SHA');
+      var bytes = utf8.encode(password);
+      var digest = sha1.convert(bytes);
 
-      final user = result.user;
-      if (user == null) {
-        throw 'Something went wrong!!!';
-      }
-      final userModel = UserModel(email: email, userName: userName);
-      return right(userModel);
-    } on FirebaseAuthException catch (error) {
-      final messaage = FirebaseHelper.getMessageFromErrorCode(error);
-      return left(AppError(message: messaage));
+      await shaUserCollection.add({
+        'userName': userName,
+        'password': digest.toString(),
+      });
+
+      return right(digest.toString());
     } catch (e) {
       log('Error Message in SignUp : $e');
       return left(AppError(message: e.toString()));
     }
   }
 
-  FutureAppEither<String> login(String email, String password) async {
+  FutureAppEither<String> login(String userName, String password) async {
     try {
-      final result = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      QuerySnapshot shaUsers = await _firestore.collection('SHA').get();
 
-      final user = result.user;
-      if (user == null) {
-        throw 'Something went wrong!!!';
+      List<Map<String, dynamic>> userDataList = [];
+
+      for (var doc in shaUsers.docs) {
+        userDataList.add(doc.data() as Map<String, dynamic>);
       }
 
-      return right(user.uid);
-    } on FirebaseAuthException catch (error) {
-      final messaage = FirebaseHelper.getMessageFromErrorCode(error);
-      return left(AppError(message: messaage));
+      final user = userDataList.firstWhere(
+        (element) => element['userName'] == userName,
+        orElse: () => throw 'User not found',
+      );
+
+      var bytes = utf8.encode(password);
+      var digest = sha1.convert(bytes);
+
+      if (user['password'] != digest.toString()) {
+        throw 'Invalid password';
+      }
+
+      return right(user['password']);
+    } catch (e) {
+      log('Error Message in SignUp : $e');
+      return left(AppError(message: e.toString()));
+    }
+  }
+
+  FutureAppEither<String> resetPassword(
+    String username,
+    String password,
+  ) async {
+    try {
+      CollectionReference shaUserCollection = _firestore.collection('SHA');
+      QuerySnapshot querySnapshot =
+          await shaUserCollection.where('userName', isEqualTo: username).get();
+
+      var bytes = utf8.encode(password);
+      var digest = sha1.convert(bytes);
+
+      if (querySnapshot.docs.isNotEmpty) {
+        var doc = querySnapshot.docs.first;
+        await shaUserCollection.doc(doc.id).update(
+          {'password': digest.toString()},
+        );
+      } else {
+        throw 'User not found';
+      }
+
+      return right(digest.toString());
     } catch (e) {
       log('Error Message in SignUp : $e');
       return left(AppError(message: e.toString()));

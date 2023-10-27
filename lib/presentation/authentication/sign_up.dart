@@ -17,7 +17,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
 
@@ -51,16 +50,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   inputType: TextInputType.name,
                   prefixIcon: const Icon(
                     Icons.person_outline_rounded,
-                    color: AppColors.textColor,
-                  ),
-                ),
-                SizedBox(height: 15.h),
-                MyTextField(
-                  controller: emailController,
-                  hintText: 'Email',
-                  inputType: TextInputType.emailAddress,
-                  prefixIcon: const Icon(
-                    Icons.email_outlined,
                     color: AppColors.textColor,
                   ),
                 ),
@@ -103,30 +92,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }
                     if (state.status == AuthStatus.signup) {
                       context.go('/home');
+                      showSnackBar(context, state.digest);
                     }
                   },
                   builder: (context, state) {
                     return CustomButton(
                       title: 'SignUp',
                       onTap: () {
-                        if (!emailController.text.contains('@')) {
-                          showSnackBar(context, 'Invalid Email', isError: true);
+                        if (userNameController.text == '') {
+                          showSnackBar(
+                            context,
+                            'Enter valid username',
+                            isError: true,
+                          );
                         } else if (passwordController.text.length < 6) {
                           showSnackBar(
                             context,
                             'Password should be atleast 6 characters',
                             isError: true,
                           );
-                        } else if (userNameController.text == '') {
-                          showSnackBar(
-                            context,
-                            'Invalid Username',
-                            isError: true,
-                          );
                         } else {
                           context.read<AuthBloc>().add(
                                 SignUpEvent(
-                                  email: emailController.text,
                                   password: passwordController.text,
                                   userName: userNameController.text,
                                 ),

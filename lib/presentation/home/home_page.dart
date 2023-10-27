@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:quiz_go/common/widgets/export_widgets.dart';
 import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/extensions/export_extension.dart';
@@ -26,10 +25,23 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 80.h),
-                  Text(
-                    'Programming Zone',
-                    style: MyTextStyles.extraLargeTextStyle
-                        .copyWith(fontSize: 24.sp),
+                  Row(
+                    children: [
+                      Text(
+                        'Programming Zone',
+                        style: MyTextStyles.extraLargeTextStyle
+                            .copyWith(fontSize: 24.sp),
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {
+                          context.go('/login');
+                        },
+                        icon: const Icon(
+                          Icons.logout_outlined,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 30.h),
                   StaggeredGrid.count(
