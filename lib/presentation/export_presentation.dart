@@ -1,9 +1,11 @@
-export './authentication/auth_widgets/mobile_view.dart';
-export './authentication/auth_widgets/web_view.dart';
 export './home/home_page.dart';
 export './quiz/option_widget.dart';
 export './quiz/question_page.dart';
 export './quiz/quiz_page.dart';
 export './quiz/score_page.dart';
 export 'authentication/login.dart';
+export 'authentication/login_widgets/login_mobile_view.dart';
+export 'authentication/login_widgets/login_web_view.dart';
 export 'authentication/sign_up.dart';
+export 'authentication/signup_widgets/signup_mobile_view.dart';
+export 'authentication/signup_widgets/signup_web_view.dart';
