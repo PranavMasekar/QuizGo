@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiz_go/constants/export_constants.dart';
+import 'package:quiz_go/extensions/context_extension.dart';
 
 class MyTextField extends StatelessWidget {
   const MyTextField({
-    required this.controller, super.key,
+    required this.controller,
+    super.key,
     this.hintText = '',
     this.inputType = TextInputType.text,
     this.prefixIcon,
     this.suffixIcon,
     this.isObsecure = false,
   });
+
   final TextEditingController controller;
   final String hintText;
   final Widget? prefixIcon, suffixIcon;
@@ -19,8 +21,8 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = MyTextStyles.normalTextStyle.copyWith(fontSize: 16.sp);
-    final radius = BorderRadius.all(Radius.circular(15.r));
+    final style = MyTextStyles.normalTextStyle.copyWith(fontSize: 16);
+    const radius = BorderRadius.all(Radius.circular(15));
     return TextField(
       style: style,
       controller: controller,
@@ -35,27 +37,27 @@ class MyTextField extends StatelessWidget {
         hintStyle: style,
         errorStyle: style,
         prefixIcon: Padding(
-          padding: EdgeInsets.only(left: 5.w),
+          padding: EdgeInsets.symmetric(horizontal: context.getWidth() * 0.01),
           child: prefixIcon,
         ),
         suffixIcon: Padding(
-          padding: EdgeInsets.only(right: 15.w),
+          padding: const EdgeInsets.only(right: 15),
           child: suffixIcon,
         ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.greyColor, width: 1.w),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.greyColor, width: 1),
           borderRadius: radius,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.greyColor, width: 1.w),
+        focusedBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.greyColor, width: 1),
           borderRadius: radius,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.greyColor, width: 1.w),
+        enabledBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.greyColor, width: 1),
           borderRadius: radius,
         ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColors.redColor, width: 1.w),
+        errorBorder: const OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.redColor, width: 1),
           borderRadius: radius,
         ),
       ),

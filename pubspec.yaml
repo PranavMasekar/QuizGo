@@ -31,6 +31,7 @@ dependencies:
   intl: ^0.18.1
   lottie: ^2.6.0
   path_provider: ^2.1.1
+  url_strategy: ^0.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

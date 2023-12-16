@@ -10,6 +10,7 @@ import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/firebase_options.dart';
 import 'package:quiz_go/locator.dart';
 import 'package:quiz_go/router/export_router.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ Future<void> main() async {
         ? HydratedStorage.webStorageDirectory
         : await getTemporaryDirectory(),
   );
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 

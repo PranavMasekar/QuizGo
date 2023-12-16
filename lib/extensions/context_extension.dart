@@ -5,4 +5,5 @@ extension BuildContextExtension on BuildContext {
       MediaQuery.of(this).size.height * percentage;
   double getWidth({double percentage = 1}) =>
       MediaQuery.of(this).size.width * percentage;
+  TextScaler getScaler() => MediaQuery.of(this).textScaler;
 }
