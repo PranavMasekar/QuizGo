@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:quiz_go/constants/export_constants.dart';
+import 'package:quiz_go/extensions/context_extension.dart';
 
 class QuizCard extends StatelessWidget {
   const QuizCard({
@@ -15,7 +15,7 @@ class QuizCard extends StatelessWidget {
     super.key,
   });
 
-  final int height, width;
+  final double height, width;
   final Color color;
   final VoidCallback ontap;
   final String name;
@@ -23,6 +23,7 @@ class QuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentScreenWidth = context.getWidth();
     return InkWell(
       onTap: ontap,
       child: Container(
@@ -37,8 +38,10 @@ class QuizCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 40.h,
-              width: 40.w,
+              height: currentScreenWidth > 400
+                  ? currentScreenWidth * 0.1
+                  : currentScreenWidth * 0.08,
+              width: context.getWidth() * 0.15,
               padding: EdgeInsets.all(5.w),
               decoration: BoxDecoration(
                 color: AppColors.textColor,
@@ -51,7 +54,7 @@ class QuizCard extends StatelessWidget {
               width: width.w,
               child: Text(
                 name,
-                style: MyTextStyles.largeTextStyle,
+                style: MyTextStyles.normalTextStyle,
                 overflow: TextOverflow.clip,
                 textAlign: TextAlign.center,
               ),

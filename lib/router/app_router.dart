@@ -45,9 +45,8 @@ class AppRouter {
           state.matchedLocation == '/signup';
       if (!isAuthenticated && isUserOnAuth) {
         return state.matchedLocation;
-      } else {
-        return '/home';
       }
+      return null;
     },
   );
 }

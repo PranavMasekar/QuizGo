@@ -9,3 +9,5 @@ export 'authentication/login_widgets/login_web_view.dart';
 export 'authentication/sign_up.dart';
 export 'authentication/signup_widgets/signup_mobile_view.dart';
 export 'authentication/signup_widgets/signup_web_view.dart';
+export 'home/home_widgets/home_mobile_view.dart';
+export 'home/home_widgets/home_web_view.dart';
