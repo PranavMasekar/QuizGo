@@ -1,5 +1,7 @@
-class Option {
+import 'package:welltested_annotation/welltested_annotation.dart';
 
+@Welltested()
+class Option {
   Option({required this.id, required this.text});
   final String id;
   final String text;
