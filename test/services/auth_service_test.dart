@@ -1,68 +1,38 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:quiz_go/models/user_model.dart';
 import 'package:quiz_go/services/auth_service.dart';
 
-class MockAuthService extends Mock implements AuthService {}
-
-class MockFirebaseAuth extends Mock implements FirebaseAuth {
-  @override
-  Future<UserCredential> createUserWithEmailAndPassword({
-    required String? email,
-    required String? password,
-  }) =>
-      super.noSuchMethod(
-        Invocation.method(#createUserWithEmailAndPassword, [email, password]),
-        returnValue: Future.value(MockUserCredential()),
-      );
-}
-
-class MockUserCredential extends Mock implements UserCredential {}
-
-class MockUser extends Mock implements User {}
-
 void main() {
-  late final MockAuthService mockAuthService;
   late final MockFirebaseAuth mockFirebaseAuth;
-  late final MockUserCredential userCredential;
-  late final MockUser mockUser;
+  late final FakeFirebaseFirestore fakeFirebaseFirestore;
+  late final AuthService authService;
 
-  setUp(
-    () {
-      mockFirebaseAuth = MockFirebaseAuth();
-      userCredential = MockUserCredential();
-      mockAuthService = MockAuthService();
-      mockUser = MockUser();
-      when(userCredential.user).thenReturn(mockUser);
-    },
-  );
+  setUp(() {
+    mockFirebaseAuth = MockFirebaseAuth();
+    fakeFirebaseFirestore = FakeFirebaseFirestore();
+    authService = AuthService(
+      auth: mockFirebaseAuth,
+      firestore: fakeFirebaseFirestore,
+    );
+  });
 
   test(
-    'should return a user when the sign up is successful',
+    'Signup with email and password should return UserModel',
     () async {
-      when(
-        mockFirebaseAuth.createUserWithEmailAndPassword(
-          email: "someone@gmail.com",
-          password: "123456",
-        ),
-      ).thenAnswer(
-        (_) async => userCredential,
-      );
+      const email = 'someone@gmail.com';
+      const password = '123456';
+      const userName = 'Someone';
 
-      final UserModel user = UserModel(
-        email: 'someone@gmail.com',
-        userName: 'someone',
-      );
+      final user = UserModel(email: email, userName: userName);
 
-      final result = await mockAuthService.signUp(
-        'someone@gmail.com',
-        '123456',
-        'someone',
-      );
+      final result = await authService.signUp(email, password, userName);
+      final isRight = result.isRight();
+      final actualUser = result.toNullable();
 
-      expect(result.isRight(), true);
-      expect(result.getRight(), user);
+      expect(isRight, true);
+      expect(actualUser, user);
     },
   );
 }
