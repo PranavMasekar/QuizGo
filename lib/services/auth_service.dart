@@ -8,12 +8,12 @@ import 'package:quiz_go/helpers/export_helpers.dart';
 import 'package:quiz_go/models/export_models.dart';
 
 class AuthService {
-
   AuthService({
     required FirebaseAuth auth,
     required FirebaseFirestore firestore,
   })  : _auth = auth,
         _firestore = firestore;
+
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
 
