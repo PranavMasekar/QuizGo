@@ -8,12 +8,12 @@ import 'package:quiz_go/helpers/export_helpers.dart';
 import 'package:quiz_go/models/export_models.dart';
 
 class AuthService {
-
   AuthService({
     required FirebaseAuth auth,
     required FirebaseFirestore firestore,
   })  : _auth = auth,
         _firestore = firestore;
+
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
 
@@ -70,6 +70,9 @@ class AuthService {
     try {
       await _auth.signOut();
       return right(true);
+    } on FirebaseAuthException catch (error) {
+      final messaage = FirebaseHelper.getMessageFromErrorCode(error);
+      return left(AppError(message: messaage));
     } catch (error) {
       log('Error Message in signOut : $error');
       return left(AppError(message: 'Something went wrong'));

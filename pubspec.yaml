@@ -14,7 +14,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^5.3.2
   equatable: ^2.0.5
+  fake_cloud_firestore: ^2.4.5
   firebase_auth: ^4.7.2
+  firebase_auth_mocks: ^0.13.0
   firebase_core: ^2.15.0
   flutter:
     sdk: flutter
@@ -30,12 +32,17 @@ dependencies:
   hydrated_bloc: ^9.1.2
   intl: ^0.18.1
   lottie: ^2.6.0
+  mock_exceptions: ^0.8.2
   path_provider: ^2.1.1
+  welltested: ^0.0.1
+  welltested_annotation: ^1.0.1
 
 dev_dependencies:
+  build_runner: ^2.4.7
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  mockito: ^5.4.4
 
 flutter_launcher_icons:
   android: "launcher_icon"
