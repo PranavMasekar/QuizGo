@@ -70,6 +70,9 @@ class AuthService {
     try {
       await _auth.signOut();
       return right(true);
+    } on FirebaseAuthException catch (error) {
+      final messaage = FirebaseHelper.getMessageFromErrorCode(error);
+      return left(AppError(message: messaage));
     } catch (error) {
       log('Error Message in signOut : $error');
       return left(AppError(message: 'Something went wrong'));
