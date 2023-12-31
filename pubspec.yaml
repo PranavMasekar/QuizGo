@@ -32,6 +32,7 @@ dependencies:
   hydrated_bloc: ^9.1.2
   intl: ^0.18.1
   lottie: ^2.6.0
+  mock_exceptions: ^0.8.2
   path_provider: ^2.1.1
   welltested: ^0.0.1
   welltested_annotation: ^1.0.1

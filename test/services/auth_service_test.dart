@@ -1,6 +1,9 @@
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mock_exceptions/mock_exceptions.dart';
+import 'package:quiz_go/constants/export_constants.dart';
 import 'package:quiz_go/models/user_model.dart';
 import 'package:quiz_go/services/auth_service.dart';
 
@@ -9,7 +12,7 @@ void main() {
   late final FakeFirebaseFirestore fakeFirebaseFirestore;
   late final AuthService authService;
 
-  setUp(() {
+  setUpAll(() {
     mockFirebaseAuth = MockFirebaseAuth();
     fakeFirebaseFirestore = FakeFirebaseFirestore();
     authService = AuthService(
@@ -18,21 +21,56 @@ void main() {
     );
   });
 
-  test(
-    'Signup with email and password should return UserModel',
-    () async {
-      const email = 'someone@gmail.com';
-      const password = '123456';
-      const userName = 'Someone';
+  group(
+    'Signup Function -',
+    () {
+      test(
+        'should return UserModel on success',
+        () async {
+          const email = 'someone@gmail.com';
+          const password = '123456';
+          const userName = 'Someone';
 
-      final user = UserModel(email: email, userName: userName);
+          final expectedUser = UserModel(email: email, userName: userName);
 
-      final result = await authService.signUp(email, password, userName);
-      final isRight = result.isRight();
-      final actualUser = result.toNullable();
+          final result = await authService.signUp(email, password, userName);
 
-      expect(isRight, true);
-      expect(actualUser, user);
+          result.fold(
+            (error) => expect(error, isA<AppError>()),
+            (user) => expect(user, expectedUser),
+          );
+        },
+      );
+
+      test(
+        'should return AppError on exception',
+        () async {
+          const email = 'someone2@gmail.com';
+          const password = '123456';
+          const userName = 'Someone2';
+
+          whenCalling(
+            Invocation.method(#createUserWithEmailAndPassword, null),
+          )
+              .on(mockFirebaseAuth)
+              .thenThrow(FirebaseAuthException(code: 'Random Error'));
+
+          expect(
+            () => mockFirebaseAuth.createUserWithEmailAndPassword(
+              email: email,
+              password: password,
+            ),
+            throwsA(isA<FirebaseAuthException>()),
+          );
+
+          final result = await authService.signUp(email, password, userName);
+
+          result.fold(
+            (error) => expect(error, isA<AppError>()),
+            (user) => expect(user, isA<UserModel>()),
+          );
+        },
+      );
     },
   );
 }

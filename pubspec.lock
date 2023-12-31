@@ -673,7 +673,7 @@ packages:
     source: hosted
     version: "1.0.4"
   mock_exceptions:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: mock_exceptions
       sha256: "6e3e623712d2c6106ffe9e14732912522b565ddaa82a8dcee6cd4441b5984056"
