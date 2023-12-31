@@ -21,7 +21,13 @@ class QuizService {
         },
       );
       log('Response Code From FetchQuiz : ${response.statusCode}');
-      return right(response.data);
+      if (response.statusCode == 200) {
+        return right(response.data);
+      } else {
+        return left(
+          AppError(message: 'Something went wrong!'),
+        );
+      }
     } catch (error) {
       log('Error Message in QuizService : $error');
       return left(
@@ -43,7 +49,13 @@ class QuizService {
         },
       );
       log('Response Code From FetchQuiz : ${response.statusCode}');
-      return right(response.data['results']);
+      if (response.statusCode == 200) {
+        return right(response.data['results']);
+      } else {
+        return left(
+          AppError(message: 'Something went wrong!'),
+        );
+      }
     } catch (error) {
       log('Error Message in QuizService : $error');
       return left(
