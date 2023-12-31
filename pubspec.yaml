@@ -39,6 +39,7 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.4.7
+  http_mock_adapter: ^0.6.1
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
